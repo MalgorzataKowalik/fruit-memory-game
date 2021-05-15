@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: rgb(169, 234, 255);
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+header {
+    height: 5vh;
+    width: 35%;
+    position: absolute;
+    left: -2vh;
+    top: 1.5vh;
+    padding-left: 11vw;
+    border-radius: 1.5vh;
+    background-color: rgb(255, 216, 87);
+    color: rgb(0, 161, 214);
+    font-size: 20px;
+    line-height: 5vh;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 1s;
+
+}
+
+header.gameStarted {
+    left: calc(-2vh - 35%)
+}
+
+div.wrap {
+    height: 80vh;
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(3, 13.5vh [col]);
+    grid-template-rows: repeat(6, 13.5vh [row]);
+    grid-gap: 10px;
+    justify-content: center;
+    align-content: center;
+
+}
+
+div.wrap>div {
+
+    border-radius: 10%;
+    background-color: rgb(97, 216, 255);
+}
+
+img {
+
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80%;
+    width: auto;
+    max-width: 80%;
+}
+
+
+
+div.wrap>div.hidden {
+    background-color: deepskyblue;
+}
+
+div.wrap>div.guessed {
+    background-color: rgb(220, 246, 255);
+}
+div.wrap>div.hidden>img, div.wrap>div.guessed>img {
+    display: none;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 35%;
+    border-radius: 1.5vh;
+    background-color: rgb(255, 216, 87);
+    text-align: center;
+    z-index: 1;
+}
+.popup.active {
+    display: block;
+}
+
+.popup h2 {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: rgb(0, 133, 177);
+}
+
+.popup .again {
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    color: rgb(0, 161, 214);
+    animation: again 1s linear infinite;
+    cursor: po;
+}
+
+
+@media (orientation: landscape) {
+    div.wrap {
+        grid-template-columns: repeat(6, 13vw [col]);
+        grid-template-rows: repeat(3, 13vw [row]);
+        grid-gap: 15px;
+    
+    }
+
+    .popup {
+        border-radius: 1.5vw;
+        width: 40%;
+        height: 50%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .popup h2 {
+        font-size: 30px;
+    }
+    .popup .again {
+        font-size: 40px;
+    }
+}
+
+@keyframes again {
+    0% {transform: translateX(-50%) scale(1);}
+    50% {transform: translateX(-50%) scale(1.2);}
+}
