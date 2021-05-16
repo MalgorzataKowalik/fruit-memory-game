@@ -6,7 +6,13 @@ let guessedPairs = 0;
 const popup = document.querySelector('.popup');
 const xButton = document.querySelector('div.x');
 const againButton = document.querySelector('.again');
-const header = document.querySelector('header');
+const span = document.querySelector('.popup span');
+const startButton = document.querySelector('.start');
+let startTime = 0;
+
+
+
+
 
 
 
@@ -19,54 +25,60 @@ function drawFruits () {
 }
 drawFruits()
 
+
 function showFruit () {
+    if (startButton.classList.contains('clicked')) {
+        this.classList.remove('hidden');
 
-    header.classList.add('gameStarted');
+        if (this == activeCards[0]) return; //makes it impossible to select the same item again
 
-    this.classList.remove('hidden');
+        //actions for the first item:
+        if (activeCards.length == 0) {
+            activeCards[0] = this;
+            return
+        }
 
-    if (this == activeCards[0]) return; //makes it impossible to select the same item again
+        //actions for the second item:
+        else {
+            activeCards[1] = this;
+            cards.forEach((card) => card.removeEventListener('click', showFruit))
 
-    //actions for the first item:
-    if (activeCards.length == 0) {
-        activeCards[0] = this;
-        return
-    }
+        }
+            
+        setTimeout(() => {
+            if (activeCards[0].innerHTML == activeCards[1].innerHTML) {
+                activeCards.forEach(card => card.classList.add('guessed'))
+                guessedPairs++;
 
-    //actions for the second item:
-    else {
-        activeCards[1] = this;
-        cards.forEach((card) => card.removeEventListener('click', showFruit))
+                cards = cards.filter(card => !card.classList.contains('guessed'))  //removes guessed elements from squares array
 
-    }
-    
-    setTimeout(() => {
-        if (activeCards[0].innerHTML == activeCards[1].innerHTML) {
-            activeCards.forEach(card => card.classList.add('guessed'))
-            guessedPairs++;
+                if (guessedPairs == numberOfPairs) {
+                    const endTime = new Date().getTime();
+                    span.textContent = ((endTime - startTime)/1000).toFixed(2)
+                    popup.classList.add('active');
+                    againButton.addEventListener('click', () => location.reload());
 
-            cards = cards.filter(card => !card.classList.contains('guessed'))  //removes guessed elements from squares array
-
-            if (guessedPairs == numberOfPairs) {
-                popup.classList.add('active');
-                againButton.addEventListener('click', () => location.reload());
-                xButton.addEventListener('click', () => {
-                    popup.classList.remove('active');
-                })
-                
+                        
+                }
+                else {
+                    cards.forEach((card) => card.addEventListener('click', showFruit))
+                }
             }
             else {
+                activeCards.forEach(card => card.classList.add('hidden'))
                 cards.forEach((card) => card.addEventListener('click', showFruit))
             }
-        }
-        else {
-            activeCards.forEach(card => card.classList.add('hidden'))
-            cards.forEach((card) => card.addEventListener('click', showFruit))
-        }
-        activeCards.length = 0;
-        
-    }, 500);
-
+            activeCards.length = 0;
+                
+        }, 500);
+    }
 }
 
 cards.forEach((card) => card.addEventListener('click', showFruit))
+
+startButton.addEventListener('click', () => {
+    startButton.classList.add('clicked');
+    startTime = new Date().getTime();
+})
+
+

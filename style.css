@@ -15,36 +15,31 @@ body {
 
 header {
     height: 5vh;
-    width: 35%;
+    width: 70%;
     position: absolute;
-    left: -2vh;
+    left: 50%;
     top: 1.5vh;
-    padding-left: 11vw;
+    transform: translateX(-50%);
     border-radius: 1.5vh;
     background-color: rgb(255, 216, 87);
     color: rgb(0, 161, 214);
-    font-size: 20px;
+    font-size: 16px;
+    text-align: center;
     line-height: 5vh;
     font-weight: 700;
     letter-spacing: 1px;
-    transition: 1s;
 
 }
 
-header.gameStarted {
-    left: calc(-2vh - 35%)
-}
 
 div.wrap {
-    height: 80vh;
-    width: 90%;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 8vh;
+    transform: translateX(-50%);
     display: grid;
-    grid-template-columns: repeat(3, 13.5vh [col]);
-    grid-template-rows: repeat(6, 13.5vh [row]);
+    grid-template-columns: repeat(3, 13.2vh [col]);
+    grid-template-rows: repeat(6, 13.2vh [row]);
     grid-gap: 10px;
     justify-content: center;
     align-content: center;
@@ -72,6 +67,7 @@ img {
 
 div.wrap>div.hidden {
     background-color: deepskyblue;
+    cursor: pointer;
 }
 
 div.wrap>div.guessed {
@@ -79,6 +75,30 @@ div.wrap>div.guessed {
 }
 div.wrap>div.hidden>img, div.wrap>div.guessed>img {
     display: none;
+}
+
+
+.start {
+    height: 8vh;
+    width: 40%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 1.5vh;
+    background-color: rgb(255, 216, 87);
+    color: rgb(0, 161, 214);
+    font-size: 24px;
+    text-align: center;
+    line-height: 8vh;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.start.clicked {
+    transform: scale(0);
 }
 
 .popup {
@@ -120,9 +140,16 @@ div.wrap>div.hidden>img, div.wrap>div.guessed>img {
 
 
 @media (orientation: landscape) {
+    header {
+        height: 6vh;
+        top: 2vh;
+        line-height: 6vh;
+    }
+
     div.wrap {
-        grid-template-columns: repeat(6, 13vw [col]);
-        grid-template-rows: repeat(3, 13vw [row]);
+        top: 10vh;
+        grid-template-columns: repeat(6, 12vw [col]);
+        grid-template-rows: repeat(3, 12vw [row]);
         grid-gap: 15px;
     
     }
@@ -132,14 +159,35 @@ div.wrap>div.hidden>img, div.wrap>div.guessed>img {
         width: 40%;
         height: 50%;
     }
+
+    .start {
+        height: 10vh;
+        line-height: 10vh;
+        width: 20%;
+        top: calc(10vh + 0.5*(3*12vw + 2*15px));
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@media (min-width: 500px) {
+    header {
+        font-size: 18px;
+    }
 }
 
 @media (min-width: 1000px) {
+    header {
+        font-size: 24px;
+    }
     .popup h2 {
         font-size: 30px;
     }
     .popup .again {
         font-size: 40px;
+    }
+    .start {
+        height: 8vh;
+        line-height: 8vh;
     }
 }
 
