@@ -135,7 +135,7 @@ div.wrap>div.hidden>img, div.wrap>div.guessed>img {
     font-size: 22px;
     color: rgb(0, 161, 214);
     animation: again 1s linear infinite;
-    cursor: po;
+    cursor: pointer;
 }
 
 footer {
