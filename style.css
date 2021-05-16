@@ -35,11 +35,11 @@ header {
 div.wrap {
     position: absolute;
     left: 50%;
-    top: 8vh;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: grid;
-    grid-template-columns: repeat(3, 13.2vh [col]);
-    grid-template-rows: repeat(6, 13.2vh [row]);
+    grid-template-columns: repeat(3, 13vh [col]);
+    grid-template-rows: repeat(6, 13vh [row]);
     grid-gap: 10px;
     justify-content: center;
     align-content: center;
@@ -138,6 +138,25 @@ div.wrap>div.hidden>img, div.wrap>div.guessed>img {
     cursor: po;
 }
 
+footer {
+    height: 3vh;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgb(137, 225, 255);
+    color: rgb(0, 161, 214);
+    font-size: 10px;
+    text-align: center;
+    line-height: 3vh;
+    letter-spacing: 1px;
+
+}
+
+footer i {
+    color: hotpink;
+}
+
 
 @media (orientation: landscape) {
     header {
@@ -147,9 +166,8 @@ div.wrap>div.hidden>img, div.wrap>div.guessed>img {
     }
 
     div.wrap {
-        top: 10vh;
-        grid-template-columns: repeat(6, 12vw [col]);
-        grid-template-rows: repeat(3, 12vw [row]);
+        grid-template-columns: repeat(6, 11vw [col]);
+        grid-template-rows: repeat(3, 11vw [row]);
         grid-gap: 15px;
     
     }
@@ -164,8 +182,6 @@ div.wrap>div.hidden>img, div.wrap>div.guessed>img {
         height: 10vh;
         line-height: 10vh;
         width: 20%;
-        top: calc(10vh + 0.5*(3*12vw + 2*15px));
-        transform: translate(-50%, -50%) scale(1);
     }
 }
 
